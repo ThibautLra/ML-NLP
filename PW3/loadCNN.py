@@ -3,6 +3,7 @@ import streamlit as st
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel
 import requests
+import json
 
 def loadCNN():
     articles_url = "https://github.com/ThibautLra/ML-NLP/blob/main/PW3/CNNArticles"
@@ -12,9 +13,9 @@ def loadCNN():
     abstracts_response = requests.get(abstracts_url)
 
     if articles_response.status_code == 200 and abstracts_response.status_code == 200:
-        articles = pickle.loads(articles_response.content)
-        abstracts = pickle.loads(abstracts_response.content)
-    
+            articles = json.loads(articles_response.content)
+            abstracts = json.loads(abstracts_response.content)
+
     #file = open("./CNNArticles", 'rb')
     #articles = pickle.load(file)
     #file = open("./CNNGold", 'rb')
