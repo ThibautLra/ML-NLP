@@ -70,30 +70,30 @@ if st.button("Retrieve Documents"):
     st.text(articles[highest_score_index])
     document_text = articles[highest_score_index]
     
-import spacy
+#import spacy
 
 # Load the spaCy language model
-nlp = spacy.load("en_core_web_sm")
+#nlp = spacy.load("en_core_web_sm")
 
 # Function to extract and highlight keywords
-def extract_and_highlight_keywords(document_text):
+#def extract_and_highlight_keywords(document_text):
     # Process the document text with spaCy
-    doc = nlp(document_text)
+#    doc = nlp(document_text)
 
     # Extract keywords (in this example, we're using nouns as keywords)
-    keywords = [token.text for token in doc if token.pos_ == "NOUN"]
+#    keywords = [token.text for token in doc if token.pos_ == "NOUN"]
 
     # Highlight keywords with CSS
-    highlighted_text = document_text
-    for keyword in keywords:
-        highlighted_text = highlighted_text.replace(keyword, f'<span style="text-decoration: underline;">{keyword}</span>')
+#    highlighted_text = document_text
+#    for keyword in keywords:
+#        highlighted_text = highlighted_text.replace(keyword, f'<span style="text-decoration: underline;">{keyword}</span>')
 
-    return keywords, highlighted_text
+#    return keywords, highlighted_text
 
 # Extract and highlight keywords
-extracted_keywords, highlighted_document_text = extract_and_highlight_keywords(document_text)
+#extracted_keywords, highlighted_document_text = extract_and_highlight_keywords(document_text)
 
-st.title("Keyword Extraction")
-st.text(extracted_keywords)
+#st.title("Keyword Extraction")
+#st.text(extracted_keywords)
 #st.header("Highlighted Document Text:")
 #st.markdown(highlighted_document_text, unsafe_allow_html=True)
