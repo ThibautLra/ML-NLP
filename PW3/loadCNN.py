@@ -2,12 +2,23 @@ import pickle
 import streamlit as st
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel
+import requests
 
 def loadCNN():
-    file = open("CNNArticles", 'rb')
-    articles = pickle.load(file)
-    file = open("CNNGold", 'rb')
-    abstracts = pickle.load(file)
+    articles_url = "https://github.com/ThibautLra/ML-NLP/blob/main/PW3/CNNArticles"
+    abstracts_url = "https://github.com/ThibautLra/ML-NLP/blob/main/PW3/CNNGold"
+
+    articles_response = requests.get(articles_url)
+    abstracts_response = requests.get(abstracts_url)
+
+    if articles_response.status_code == 200 and abstracts_response.status_code == 200:
+        articles = pickle.loads(articles_response.content)
+        abstracts = pickle.loads(abstracts_response.content)
+    
+    #file = open("./CNNArticles", 'rb')
+    #articles = pickle.load(file)
+    #file = open("./CNNGold", 'rb')
+    #abstracts = pickle.load(file)
 
     articlesCl = []
     for article in articles:
@@ -56,7 +67,7 @@ if st.button("Retrieve Documents"):
     # Display the content of the highest-ranked document
     st.header("Content of the Highest-Ranked Document:")
     st.text(articles[highest_score_index])
-document_text = articles[highest_score_index]
+    document_text = articles[highest_score_index]
     
 import spacy
 
