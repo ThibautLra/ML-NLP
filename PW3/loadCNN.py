@@ -13,8 +13,9 @@ def loadCNN():
     abstracts_response = requests.get(abstracts_url)
 
     if articles_response.status_code == 200 and abstracts_response.status_code == 200:
-            articles = json.loads(articles_response.content)
-            abstracts = json.loads(abstracts_response.content)
+                articles = pickle.loads(articles_response.content)
+                abstracts = pickle.loads(abstracts_response.content)
+
 
     #file = open("./CNNArticles", 'rb')
     #articles = pickle.load(file)
